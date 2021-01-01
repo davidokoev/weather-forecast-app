@@ -38,3 +38,7 @@ App
        - SearchForm
        - Cards
          - Card
+    
+## API Reference
+[5 day / 3 hour Forecast Data from Open Weather](https://openweathermap.org/forecast5)
+         
