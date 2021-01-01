@@ -43,4 +43,4 @@ App
 [5 day / 3 hour Forecast Data from Open Weather](https://openweathermap.org/forecast5)
 
 ## Additional Info
-useMemo usage code sample in `src\containers\Forecast\Forecast.js` file.
+useMemo hook usage example in `src\containers\Forecast\Forecast.js` file.
