@@ -27,4 +27,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ### Search Form
 ![](https://user-images.githubusercontent.com/9249084/103439384-dab29580-4c55-11eb-8949-b2f3bcf95b84.JPG)
 ### Forecast results
+![](https://user-images.githubusercontent.com/9249084/103439438-5dd3eb80-4c56-11eb-8e1e-92cf5925655f.JPG)
 ### Not found location
+![](https://user-images.githubusercontent.com/9249084/103439446-704e2500-4c56-11eb-9c27-f3787322c927.JPG)
