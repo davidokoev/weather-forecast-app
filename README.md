@@ -11,7 +11,12 @@ You can search weather forecast for 5 days at any location or city.
 ```sh
 @material-ui/core
 @material-ui/lab
+@types/jest
+@types/node
+@types/react
+@types/react-dom
 axios
+typescript
 ```
 
 ## Instructions
