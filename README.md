@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Used `TypeScript`.
+The project is using `TypeScript`.
 
 ## App Description
 
