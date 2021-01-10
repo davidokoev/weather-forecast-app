@@ -4,7 +4,17 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 
-const Card = ({ day, temperature, icon, imgAlt }) => {
+interface Props {
+    day: string,
+    temperature: {
+        min: string,
+        max: string
+    },
+    icon: string,
+    imgAlt: string
+}
+
+const Card: React.FC<Props> = ({ day, temperature, icon, imgAlt }) => {
     return (
         <Grid item>      
             <Paper>

@@ -1,15 +1,24 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
-const SearchForm = ({ city, unit, cityChanged, unitChanged, submited, error }) => {
-    const inputConfig = {
+interface Props {
+    city: string,
+    unit: string,
+    cityChanged: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    unitChanged: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    submited: (e: React.FormEvent<HTMLFormElement>) => Promise<void>,
+    error: boolean
+}
+
+const SearchForm: React.FC<Props> = ({ city, unit, cityChanged, unitChanged, submited, error }) => {
+    const inputConfig: TextFieldProps = {
         label: "City name",
         fullWidth: true,
         variant: "outlined",
@@ -33,19 +42,17 @@ const SearchForm = ({ city, unit, cityChanged, unitChanged, submited, error }) =
                 <form onSubmit={submited}>
                     <TextField { ...inputConfig } />
                         <FormControl component="fieldset" fullWidth style={{marginBottom: "20px"}}>
-                            <RadioGroup row aria-label="position" name="position" defaultValue="top">
+                            <RadioGroup row aria-label="position" name="position" defaultValue="top" onChange={unitChanged}>
                                 <FormControlLabel 
                                     value="metric" 
                                     control={<Radio color="primary" />} 
                                     label="Celcius"
-                                    checked={unit === "metric"}
-                                    onChange={unitChanged} />
+                                    checked={unit === "metric"} />
                                 <FormControlLabel 
                                     value="imperial" 
                                     control={<Radio color="primary" />} 
                                     label="Fahrenheit"
-                                    checked={unit === "imperial"}
-                                    onChange={unitChanged} />
+                                    checked={unit === "imperial"} />
                             </RadioGroup>
                         </FormControl>
                         <Button variant="contained" color="primary" fullWidth type="submit">

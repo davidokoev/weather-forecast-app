@@ -1,27 +1,29 @@
 import React, { useState, useMemo } from 'react';
 import axios from 'axios';
 
+import { Forecast as ForecastResponse } from '../../types';
 import SearchForm from '../../components/Forecast/SearchForm/SearchForm';
 import Cards from '../../components/Forecast/Cards/Cards';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-const FORECAST_URL = 'https://api.openweathermap.org/data/2.5/forecast';
+const FORECAST_URL: string = 'https://api.openweathermap.org/data/2.5/forecast';
 
-const Forecast = () => {
+const Forecast: React.FC = () => {
     let [city, setCity] = useState('');
     let [unit, setUnit] = useState('metric');
-    let [forecast, setForecast] = useState([]);
+    let [forecast, setForecast] = useState<ForecastResponse[]>([]);
     let [responseError, setResponseError] = useState(false);
     let [loading, setLoading] = useState(false);
     let [error, setError] = useState(false);
 
     // Fetch weather data for 5 day forecast
-    const fetchForecast = async (cityName, unit) => { 
+    const fetchForecast = async (cityName: string, unit: string): Promise<ForecastResponse[]> => { 
         const { data: { list } } = await axios.get(`${FORECAST_URL}?q=${cityName}&units=${unit}&appid=${API_KEY}`);
         return list;
     }
 
-    const submitHandler = async (e) => {
+    // Handle form submission
+    const submitHandler = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();   
         if (!city.length) {
             return setError(true);
@@ -31,8 +33,8 @@ const Forecast = () => {
         setResponseError(false);
         setLoading(true);       
         try {
-            const uriEncodedCity = encodeURIComponent(city);
-            const response = await fetchForecast(uriEncodedCity, unit);       
+            const uriEncodedCity: string = encodeURIComponent(city);
+            const response: ForecastResponse[] = await fetchForecast(uriEncodedCity, unit);       
             setForecast(response);
             setLoading(false);
         } catch(error) {
@@ -41,7 +43,8 @@ const Forecast = () => {
         }
     }
 
-    const cityChangeHandler = (e) => {
+    // Handle city change
+    const cityChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const value = e.target.value;
         setCity(value);
         if (!value) {
@@ -51,15 +54,16 @@ const Forecast = () => {
         }
     }
 
-    const unitChangeHandler = (e) => {
+    // Handle unit change
+    const unitChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setUnit(e.target.value);
     }
 
     // useMemo implementation sample
     // Only if unit changes the setTimeout will rerun cause the unit is
     // the dependency of useMemo callback
-    const memoSearchedCity = useMemo(() => {
-        const promise = new Promise((resolve, reject) => {
+    const memoSearchedCity = useMemo((): Promise<string> => {
+        const promise: Promise<string> = new Promise((resolve, reject) => {
             setTimeout(function() {
                 resolve(unit);
             }, 10000);
