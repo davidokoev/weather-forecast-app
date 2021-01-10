@@ -1,6 +1,7 @@
 # 5 Day Weather Forecast App Test Assignment
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Used `TypeScript`.
 
 ## App Description
 
